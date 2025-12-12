@@ -1,0 +1,38 @@
+name: Generate Pacman Contribution Graph
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Gera a cada 6h
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Pacman Generator
+        run: npm install -g pacman-contribution-graph
+
+      - name: Generate Graph
+        run: pacman-contribution-graph --username bielzintzk-glitch --output output
+
+      - name: Commit files
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add output/*
+          git commit -m "Update Pacman graph" || echo "No changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
