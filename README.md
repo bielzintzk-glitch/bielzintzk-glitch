@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">Eu me chamo  Gabriel, e sonho em ser um Dev de software.<br>Atualmente estudos essas linguagens de programação abaixo:</p>
+<p align="left">Eu me chamo  Gabriel, e sonho em ser um Dev de software.<br>Atualmente estudo essas linguagens de programação abaixo:</p>
 
 ###
 
